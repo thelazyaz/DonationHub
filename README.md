@@ -1,3 +1,39 @@
-# DonationHub
+# [Donator Pro](https://devpost.com/software/donator-pro/edit)
 
-Donations made easy
+by Alex Zavalny, Shehryar Usman, Mustafa Eren, Richard Briggs, and Vatsal Jain
+
+## Inspiration
+There were 5,693 homeless people in Philadelphia in 2020. Our Philadelphia data shows that there was a 14% growth in homelessness in 2022 compared to 2021. Many individuals in our city are willing to donate but find the process tedious, the donation centers hard to reach, and are unsure of the impact of their donation. This shouldn't be the case, as Americans generate 16 million tons of textile waste each and 119 million pounds of food. Due to significant obstacles in accessing food, homeless individuals are vulnerable to long-term food insecurity. And considering that households are responsible for nearly 40% of the city's wasted food and that 1 in 6 Philadelphians experiences food insecurity – much higher than the national average of 11%, we decided to combat this issue with our AI tool. As Philadelphians, we wanted to ensure the city of brotherly love has a tool to adequately show its love to those in need. 
+
+## What it does
+One day you decide to re-organize your wardrobe and find a significant amount of clothes you don't wear and don't think you will wear in the future. You realize how much you would like to donate these clothes to those who need them. However, when the thought of donation crosses your mind, you realize there are a couple of things that are really important to you before you can donate. You would prefer to know where local donation centers are around you and where your donation would have the most impact. After a long drawn google search, you realize that you have only found a couple of donation centers and you slowly start realizing how you still have to finish up your final project and you still have that assignment deadline looming over your head. As the thought of donating your clothes slowly leaves your mind, you think about DonationPro. Our tool takes care of all the heavy lifting, so that all you have to worry about is what you want to donate. Our tool ensures that users are able to input how many items they want to donate, and what those items are. After the user inputs this information, our machine learning model calculates, based on the stock of the donation centers around the user, which donation center needs the users donations the most. These centers are ranked by a Impact Percentage that is calculated by our Impact Donation Formula linked <here>. The user also recieves personal news article that are displayed based on the individual users donation patterns. This way, donators can donate to the closest donation center that would have the most impact so that supplies are well-spent and people in dire circumstances receive aid.
+
+Our web application helps all 3 parties involved in the donation process:
+1. Encourage Donators to give and give more efficiently
+2. Help people in need get food and clothing as fast as possible
+3. Help Donation Centers properly manage inventory and not waste supplies 
+
+## How we built it
+We wanted to ensure that our machine learning model was extremely accurate keeping in mind the crucial information that it was predicting. We wanted to make sure that our website was easily navigable and users would have no trouble going through our website. We chose colors that were inviting and would ensure that users have a positive experience going through our pages. Our front end was created using React-Native and our Backend was created using Flask. We also used different api's for our backend machine learning models such as the weatherapi and newsapi.
+Features:
+- Personalized Matching: Our personalized matching allows users to ensure that they are matched to the best possible donation center keeping in mind all input factors. Our machine learning model takes into consideration the current stock of donation centers around the user and updates based on daily donations.
+- Notification: We take the user's donation patterns and send the user regular emails with specific articles that match their donation patterns.
+- Map: The Resource Map provides locations of nearby donation centers that users can donate to, the map filters and sorts these centers based on highest to lowest percentage impact. We used google api to create this map and used our own api to overlay an interactive display on top of the map section.
+- News: We are scrapping the news from the news api and then storing it in a sql lite database. Then we are using NLP to summarize the articles and then using Random Forrest Regression, we run a sentiment analysis on the articles that classifies them as positive, neutral, or negative. We then display all the positive articles from most to least relevant.
+- Impact Percentage: It is a metric that we designed in order to ensure that users were able to make the most out of their donations. We have used data from the weather api which contains data for the weather of Philadelphia. In conjuction with this dataset, we used demographic data from phila.gov, to ensure we have regional demographic data. Finally, we will be using historical data provided by donation centers. With all three of these datasets, we will be training our model to most accurately predict how many people will need donations from any given data center at any given day. After gathering the  data, we ran an  regression model and calculated the equation. We added the formula used as a picture to our project.
+
+## Challenges we ran into
+- Building our own dataset to emulate data that would be provided by the donation centers
+- Combining different data types into one training set and making sure the shapes of the data aligned as - - we merged and used them. 
+- Finding data to train the model on was also challenging as we were trying to tackle an issue that does not have a lot of research or prior work done on it in the machine learning field.
+- Using the news API to classify news dynamically based on the user's preferences was challenging since we have to figure out the most efficient ways to store this data.
+- One of the biggest challenges we overcome was working collaboratively with a team of 5 people, mostly with different majors and minors, and working around each others strengths and weaknesses
+
+## Accomplishments that we're proud of
+The biggest accomplishment that we're proud of is being able to give back to our city. We are proud to be able to say that we are working towards trying to eliminate the food and clothing insecurity in Philadelphia by bridging the gap between donators and donation centers. We are also proud of our machine learning model that predicts a percentage impact score with a staggeringly high accuracy. Cleaning the data we found and training the model on the right data set was an extremely challenging task and we are extremely proud of having figured it out.
+
+## What we learned
+As a diverse group, we split the tasks amongst ourselves according to each member's skill. By doing so, we learned how to communicate effectively with each other and share data more efficiently. We also learned frameworks that we had not used before like React Native, flask and python. We had to learn how to use API's and how to effectively communicate using our front end and back end frameworks. The most we learned, was how to work on statistical models to predict people for a donation center.
+
+## What's next for Donator Pro
+We want to be able to give the donation centers an easier to user interface. For our next update, we would ideally want to build an interface where the donation centers can upload a picture of user donations. Our model would then classify each donation through a classification model, eliminating the need for the centers to have to manually input their stock. This would also allow us to create an interactive dashboard for all the donators as well, where they can keep track of their own donation patterns and what they have been donating. We would also be able to have a dashboard that allows users to track donations by their friends.
